@@ -26,7 +26,7 @@ SAVEPOINT SP1;
 UPDATE animals SET weight_kg = weight_kg * -1;
 ROLLBACK TO SP1;
 
-UPDATE ANIMALS  SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
+UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
 DELETE FROM animals WHERE date_of_birth > '2022-01-01';
 
 UPDATE animals
@@ -40,3 +40,14 @@ SELECT neutered, SUM(escape_attempts) FROM animals GROUP BY neutered;
 SELECT species, MIN(weight_kg) FROM animals GROUP BY species;
 SELECT species, MAX(weight_kg) FROM animals GROUP BY species;
 SELECT species, AVG(escape_attempts) FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-01-01' GROUP BY species;
+
+UPDATE animals SET species_id = 1 WHERE species_id IS NULL;
+UPDATE animals  SET species_id = 2 WHERE name LIKE '%mon%';
+
+SELECT name, full_name FROM animals INNER JOIN owners ON animals.owners_id = owners.id WHERE full_name = 'Melody Pond';
+SELECT A.name, S.name FROM animals A JOIN species S ON A.species_id = S.id WHERE S.name = 'pokemon';
+SELECT animals.name, owners.full_name FROM animals RIGHT JOIN owners ON animals.owners_id = owners.id;
+SELECT species.name, COUNT(animals.species_id) FROM animals JOIN species ON species.id = animals.species_id GROUP BY species.name;
+SELECT animals.name from animals JOIN owners ON owners.id = animals.owners_id JOIN species on species.id = animals.species_id WHERE animals.species_id = '2' AND animals.owners_id = '2';
+SELECT animals.name from animals JOIN owners ON owners.id = animals.owners_id WHERE animals.escape_attempts = '0' AND animals.owners_id = '5';
+SELECT full_name, COUNT(owners_id) FROM owners JOIN animals on owners.id = animals.owners_id GROUP BY full_name ORDER BY COUNT (owners_id) desc limit 1;
