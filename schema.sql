@@ -30,10 +30,11 @@ ALTER TABLE animals ADD COLUMN owners_id INT REFERENCES owners(id);
 
 
 CREATE TABLE vets(
-    id SERIAL PRIMARY KEY,
+    id INT GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(50),
     age INT,
-    date_of_graduation DATE
+    date_of_graduation DATE,
+    primary key (id)
 );
 
 CREATE TABLE specializations(
@@ -43,6 +44,6 @@ CREATE TABLE specializations(
 
 CREATE TABLE visits(
     vets_id INT REFERENCES vets(id),
-    animals_id INT REFERENCES vets(id),
+    animals_id INT REFERENCES animals(id),
     visit_date DATE
 );
