@@ -27,3 +27,11 @@ ALTER TABLE animals ADD COLUMN id SERIAL PRIMARY KEY;
 ALTER TABLE animals DROP COLUMN species;
 ALTER TABLE animals ADD COLUMN species_id INT REFERENCES species(id);
 ALTER TABLE animals ADD COLUMN owners_id INT REFERENCES owners(id);
+
+
+CREATE TABLE vets(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    date_of_graduation DATE
+);
