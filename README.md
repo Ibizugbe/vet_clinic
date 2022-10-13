@@ -1,6 +1,6 @@
 # curriculum-databases-projects-template
 
-> This is a database of a vetinary clinic that holds data about different animals.
+> In this project, we used a relational database to create the initial data structure for a vet clinic. We created a table to store animals' information, insert some data into it, and query it.
 
 
 ## Getting Started
